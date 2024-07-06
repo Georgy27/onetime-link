@@ -1,73 +1,75 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+One-time Links Service
+Этот проект представляет собой сервис для создания одноразовых ссылок, разработанный с использованием NestJS, Prisma и Docker.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Особенности
+NestJS: Прогрессивный фреймворк для Node.js, предназначенный для создания эффективных, надежных и масштабируемых серверных приложений.
+Prisma: Современный инструмент ORM для Node.js и TypeScript, интегрирующийся с вашей базой данных и генерирующий типобезопасный конструктор запросов.
+Docker: Платформа контейнеризации для упаковки и запуска приложений в изолированных средах.
+Docker Compose: Инструмент для определения и управления многоконтейнерными Docker-приложениями.
+Требования
+Node.js (v16 или выше)
+Docker и Docker Compose
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Начало работы
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
+Клонирование репозитория
 ```bash
-$ npm install
+git clone https://github.com/Georgy27/onetime-links-service.git
+cd onetime-links-service
 ```
 
-## Running the app
 
+Установка зависимостей
 ```bash
-# development
-$ npm run start
+npm install
+```
+Настройка переменных окружения
+Создайте файл .env в корне проекта со следующими переменными окружения:
 
-# watch mode
-$ npm run start:dev
+```dotenv
+# PostgreSQL Configuration
+POSTGRES_USER=your_postgres_user
+POSTGRES_PASSWORD=your_postgres_password
+POSTGRES_DB=your_database_name
+POSTGRES_PORT=5432
 
-# production mode
-$ npm run start:prod
+# Application Configuration
+BASE_URL=http://localhost
+BASE_PORT=3000
 ```
 
-## Test
+Замените значения your_postgres_user, your_postgres_password, your_database_name на ваши реальные данные.
+
+Запуск с использованием Docker Compose
+
+Убедитесь, что Docker работает на вашем компьютере. Затем выполните следующие команды для сборки и запуска приложения:
 
 ```bash
-# unit tests
-$ npm run test
+docker-compose build
+docker-compose up -d
+```
+Эти команды создадут Docker-образы и запустят контейнеры в фоновом режиме.
 
-# e2e tests
-$ npm run test:e2e
+Особенности Prisma
+Применение миграций: После запуска контейнеров выполните миграции Prisma для применения изменений в схеме базы данных:
 
-# test coverage
-$ npm run test:cov
+```bash
+docker-compose exec app npx prisma migrate deploy
 ```
 
-## Support
+Prisma Studio: Для управления данными в базе данных используйте Prisma Studio:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+docker-compose exec app npx prisma studio
+```
+Доступ к приложению
+После запуска приложение будет доступно по адресу http://localhost:3000.
 
-## Stay in touch
+Дополнительная информация
+NestJS Documentation: https://nestjs.com/docs
+Prisma Documentation: https://www.prisma.io/docs
+Docker Documentation: https://docs.docker.com/
+Docker Compose Documentation: https://docs.docker.com/compose/
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+Лицензия
+Этот проект лицензирован по лицензии MIT - см. файл LICENSE для подробностей.
