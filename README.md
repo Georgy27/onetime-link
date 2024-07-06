@@ -15,7 +15,7 @@ Docker и Docker Compose
 Клонирование репозитория
 ```bash
 git clone https://github.com/Georgy27/onetime-link.git
-cd onetime-links-service
+cd onetime-link
 ```
 
 
